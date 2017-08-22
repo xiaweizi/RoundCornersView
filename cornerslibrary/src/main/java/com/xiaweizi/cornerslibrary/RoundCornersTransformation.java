@@ -14,7 +14,8 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 
-import static com.xiaweizi.cornerslibrary.CornersProperty.CornerType.ALL;
+import static com.xiaweizi.cornerslibrary.RoundCornersTransformation.CornerType.ALL;
+
 
 /**
  * <pre>
@@ -32,16 +33,35 @@ public class RoundCornersTransformation implements Transformation<Bitmap> {
     private BitmapPool      mBitmapPool;
     private int             mRadius;
     private int             mDiameter;
-    private CornersProperty mCornersProperty;
-    private CornersProperty.CornerType mCornerType = ALL;
+    private CornerType mCornerType = ALL;
 
 
-    public RoundCornersTransformation(Context context, CornersProperty cornersProperty) {
-        this.mCornersProperty = cornersProperty;
+    public RoundCornersTransformation(Context context, int radius, CornerType type) {
         mBitmapPool = Glide.get(context).getBitmapPool();
-        mRadius = mCornersProperty.getCornersRadius();
-        mDiameter = mCornersProperty.getCornersDiameter();
-        mCornerType = mCornersProperty.getCornerType();
+        mCornerType = type;
+        mRadius = radius;
+        mDiameter = 2 * mRadius;
+    }
+
+    public enum CornerType {
+        /** 所有角 */
+        ALL,
+        /** 左上 */
+        LEFT_TOP,
+        /** 左下 */
+        LEFT_BOTTOM,
+        /** 右上 */
+        RIGHT_TOP,
+        /** 右下 */
+        RIGHT_BOTTOM,
+        /** 左侧 */
+        LEFT,
+        /** 右侧 */
+        RIGHT,
+        /** 下侧 */
+        BOTTOM,
+        /** 上侧 */
+        TOP,
     }
 
     @Override

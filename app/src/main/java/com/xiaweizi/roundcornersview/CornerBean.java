@@ -1,6 +1,6 @@
 package com.xiaweizi.roundcornersview;
 
-import com.xiaweizi.cornerslibrary.CornersProperty;
+import com.xiaweizi.cornerslibrary.RoundCornersTransformation;
 
 /**
  * <pre>
@@ -13,7 +13,7 @@ import com.xiaweizi.cornerslibrary.CornersProperty;
  */
 
 public class CornerBean {
-    public int resId;
-    public CornersProperty.CornerType  type;
+    public int                                   resId;
+    public RoundCornersTransformation.CornerType type;
 }
 

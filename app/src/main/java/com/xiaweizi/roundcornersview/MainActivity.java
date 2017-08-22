@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.xiaweizi.cornerslibrary.CornersProperty;
 import com.xiaweizi.cornerslibrary.RoundCornersTransformation;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView     mRecyclerView;
     private List<CornerBean> mList;
-    private MyAdapter mAdapter;
+    private MyAdapter        mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,45 +36,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
+
+        CornerBean bean9 = new CornerBean();
+        bean9.resId = R.drawable.alasijia;
+        bean9.type = RoundCornersTransformation.CornerType.ALL;
+        mList.add(bean9);
+
         CornerBean bean1 = new CornerBean();
         bean1.resId = R.drawable.hashiqi;
-        bean1.type = CornersProperty.CornerType.LEFT_TOP;
+        bean1.type = RoundCornersTransformation.CornerType.LEFT_TOP;
         mList.add(bean1);
 
         CornerBean bean2 = new CornerBean();
         bean2.resId = R.drawable.hashiqi1;
-        bean2.type = CornersProperty.CornerType.RIGHT_TOP;
+        bean2.type = RoundCornersTransformation.CornerType.RIGHT_TOP;
         mList.add(bean2);
 
         CornerBean bean3 = new CornerBean();
         bean3.resId = R.drawable.haishiqi2;
-        bean3.type = CornersProperty.CornerType.LEFT_BOTTOM;
+        bean3.type = RoundCornersTransformation.CornerType.LEFT_BOTTOM;
         mList.add(bean3);
 
         CornerBean bean4 = new CornerBean();
         bean4.resId = R.drawable.hashiqi3;
-        bean4.type = CornersProperty.CornerType.RIGHT_BOTTOM;
+        bean4.type = RoundCornersTransformation.CornerType.RIGHT_BOTTOM;
         mList.add(bean4);
 
         CornerBean bean5 = new CornerBean();
         bean5.resId = R.drawable.bomei1;
-        bean5.type = CornersProperty.CornerType.LEFT;
+        bean5.type = RoundCornersTransformation.CornerType.LEFT;
         mList.add(bean5);
 
         CornerBean bean6 = new CornerBean();
         bean6.resId = R.drawable.bomei2;
-        bean6.type = CornersProperty.CornerType.TOP;
+        bean6.type = RoundCornersTransformation.CornerType.TOP;
         mList.add(bean6);
 
         CornerBean bean7 = new CornerBean();
         bean7.resId = R.drawable.bomei3;
-        bean7.type = CornersProperty.CornerType.RIGHT;
+        bean7.type = RoundCornersTransformation.CornerType.RIGHT;
         mList.add(bean7);
 
         CornerBean bean8 = new CornerBean();
         bean8.resId = R.drawable.bomei;
-        bean8.type = CornersProperty.CornerType.BOTTOM;
+        bean8.type = RoundCornersTransformation.CornerType.BOTTOM;
         mList.add(bean8);
+
+
     }
 
 
@@ -95,10 +102,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            CornersProperty            property       = new CornersProperty().setCornersRadius(dip2px(12))
-                                                                             .setCornersType(mList.get(position).type);
-            RoundCornersTransformation transformation = new RoundCornersTransformation(MainActivity.this, property);
-            Glide.with(MainActivity.this).load(mList.get(position).resId).bitmapTransform(transformation).into(holder.mImageView);
+            RoundCornersTransformation transformation =
+                    new RoundCornersTransformation(MainActivity.this,
+                                                   dip2px(25),
+                                                   mList.get(position).type);
+            Glide.with(MainActivity.this)
+                 .load(mList.get(position).resId)
+                 .bitmapTransform(transformation)
+                 .into(holder.mImageView);
         }
 
         @Override
@@ -110,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImageView;
+
         public ViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.iv);
