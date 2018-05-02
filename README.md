@@ -1,6 +1,6 @@
 上周接到个小需求，就是让一张图片的右下角为圆角，然后百度了一下，发现 `Glide` 直接支持对图片进行操作，只要继承 `BitmapTransformation `,或者实现 `Transformation`的接口，就可以获得原图的 `Bitmap`对象，通过 `Canvas`对图片重新绘制，最后 `Glide.with(this).load(R.drawable.test).asBitmap().transform(transformation).into(mImageView);`传入新建的`transformation`对象即可。
 
-这里推荐`GitHub`上的一个开源库，完全满足日常需求:[glide-transformations](https://github.com/wasabeef/glide-transformations),里面有各种各样的对图片的处理，很是强大。
+这里推荐`GitHub`上的一个开源库，完全满足日常需求:[glide-transformations](https://github.com/wasabeef/glide-transformations),里面有各种各样的对图片的处理，很是强大!
 
 不过实际使用的过程中，我倒是发现一个小问题...假如只有右下角是圆角的情况下，当服务器返回的是一张半透明的图片时，结果就成了这样:
 
